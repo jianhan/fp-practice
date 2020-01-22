@@ -1,5 +1,6 @@
 {
     "require": {
-        "lstrojny/functional-php": "^1.11"
+        "lstrojny/functional-php": "^1.11",
+        "lambdish/phunctional": "^2.0"
     }
 }

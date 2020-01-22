@@ -1,0 +1,30 @@
+{
+  "name": "fp-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jianhan/fp-practice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jianhan/fp-practice/issues"
+  },
+  "homepage": "https://github.com/jianhan/fp-practice#readme",
+  "devDependencies": {
+    "@types/node": "^13.1.6",
+    "@types/ramda": "^0.26.39",
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "folktale": "^2.3.2",
+    "fp-ts": "^2.4.0",
+    "ramda": "^0.26.1"
+  }
+}
