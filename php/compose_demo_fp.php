@@ -59,6 +59,8 @@ $cleanDogs = map(
     $seedingData
 );
 
+// var_dump($cleanDogs);
+
 $getTrick = function (Dog $d): array{
     return $d->tricks;
 };
@@ -82,8 +84,7 @@ $findDogsByBreedOriginal = function (array $dogs, string $breed): array{
     return $foundDogs;
 };
 
-$findDogsByTricksOriginal = function (array $dogs, array $tricks): array
-    {
+$findDogsByTricksOriginal = function (array $dogs, array $tricks): array{
     $foundDogs = [];
     foreach ($dogs as $dog) {
         if (count(array_intersect($tricks, $dog->tricks)) === count($tricks)) {
@@ -96,9 +97,9 @@ $findDogsByTricksOriginal = function (array $dogs, array $tricks): array
 // var_dump($allTricks);
 // var_dump($allBreeds);
 // var_dump($findDogsByBreedOriginal($cleanDogs, "Beagle"));
-// var_dump($findDogsByTricksOriginal($cleanDogs, ["Sit"]));
+// var_dump($findDogsByTricksOriginal($cleanDogs, ["Kiss", "Talk", "Shake Hands", "Fetch"]));
 
-$compareBreed = function (string $breed, Dog $dog): bool {
+$isBreedEqual = function (string $breed, Dog $dog): bool {
     return $dog->breed === $breed;
 };
 
@@ -116,11 +117,11 @@ $findDogsBy = function (array $dogs, callable $fn): array{
     return $foundDogs;
 };
 
-// var_dump($findDogsBy($cleanDogs, curry($compareBreed, "Beagle")));
-// var_dump($findDogsBy($cleanDogs, curry($hasAllTricks, ["Sit"])));
+// var_dump($findDogsBy($cleanDogs, curry($isBreedEqual, "Poodle")));
+// var_dump($findDogsBy($cleanDogs, curry($hasAllTricks, ["Kiss", "Talk", "Shake Hands", "Fetch", "Roll Over", "Play Dead", "Spin", "Sit", "Hug"])));
 
-$findDogByBreedForPerson = function (array $dogs, Person $person) use ($findDogsBy, $compareBreed) {
-    $person->recommendedDogs = $findDogsBy($dogs, curry($compareBreed, $person->preferredBreed));
+$findDogByBreedForPerson = function (array $dogs, Person $person) use ($findDogsBy, $isBreedEqual) {
+    $person->recommendedDogs = $findDogsBy($dogs, curry($isBreedEqual, $person->preferredBreed));
     return $person;
 };
 
@@ -155,4 +156,4 @@ $recommendDogs = map(
     [$adam, $bob, $chris]
 );
 
-var_dump($recommendDogs);
+// var_dump($recommendDogs);
