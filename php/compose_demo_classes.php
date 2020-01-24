@@ -12,9 +12,11 @@ class Person
     public $name;
     public $preferredBreed;
     public $mustHaveTricks;
+    // ???
     public $recommendedDogs;
 }
 
+//
 class DogsShelter
 {
     private $dogs;

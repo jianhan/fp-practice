@@ -31,6 +31,10 @@ $memorize = function (callable $f) {
 
 $memAdd = $memorize($add);
 
+//var_dump($add(1,2));
+//var_dump($add(1,2));
+//var_dump($add(1,2));
+
 var_dump($memAdd(1, 2));
 var_dump($memAdd(1, 2));
 var_dump($memAdd(5, 6));

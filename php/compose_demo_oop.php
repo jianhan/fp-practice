@@ -39,4 +39,6 @@ $chris->name = "Chris";
 $chris->preferredBreed = "Labrador Retriever";
 $chris->mustHaveTricks = ["Kiss", "Talk", "Shake Hands", "Fetch", "Roll Over", "Play Dead", "Spin", "Sit", "Hug"];
 // $shelter function recommendDogs
-var_dump($shelter->recommendDogs([$adam, $bob, $chris]));
+$result = $shelter->recommendDogs([$adam, $bob, $chris]);
+
+var_dump($result[0]);

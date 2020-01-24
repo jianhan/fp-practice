@@ -38,7 +38,7 @@ class Processor
         $this->limit = $limit;
     }
 
-    public function run()
+    public function run(): void
     {
         if ($this->counter < $this->limit) {
             $this->runner->run();
@@ -53,17 +53,17 @@ class Processor
 
 $p = new Processor(new HelloWorldRunner(), 5);
 
-$p->run();
-$p->run();
-$p->run();
-$p->run();
-$p->run();
+//$p->run();
+//$p->run();
+//$p->run();
+//$p->run();
+//$p->run();
 // next one will fail
-$p->run();
+//$p->run();
 
 // Example FP implementation
-$processorFP = function (Runnerable $runner, int $limit) {
-    return function () use ($limit, $counter, $runner) {
+$processorFP = static function (Runnerable $runner, int $limit) {
+    return static function () use ($limit, $runner) {
         static $counter = 0;
 
         // early return bail

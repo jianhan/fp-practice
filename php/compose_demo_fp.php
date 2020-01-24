@@ -55,11 +55,16 @@ $rowToObj = function (array $row): Dog {
  * COMPOSITION HERE
  */
 $cleanDogs = map(
-    compose($rowToObj, $unifyNamesAndBreeds, $trimNamesAndBreedes),
+    compose(
+        $rowToObj,
+        $unifyNamesAndBreeds,
+        $trimNamesAndBreedes
+    ),
     $seedingData
 );
 
-// var_dump($cleanDogs);
+//var_dump($cleanDogs);
+//exit;
 
 $getTrick = function (Dog $d): array{
     return $d->tricks;
@@ -71,6 +76,7 @@ $reduceFunc = function (array $acc, Dog $d): array{
 };
 
 $allTricks = array_unique(flat_map($getTrick, $cleanDogs));
+
 $allBreeds = array_unique(reduce($reduceFunc, $cleanDogs, []));
 
 $findDogsByBreedOriginal = function (array $dogs, string $breed): array{
@@ -103,6 +109,7 @@ $isBreedEqual = function (string $breed, Dog $dog): bool {
     return $dog->breed === $breed;
 };
 
+
 $hasAllTricks = function (array $tricks, Dog $dog): bool {
     return count(array_intersect($tricks, $dog->tricks)) === count($tricks);
 };
@@ -117,8 +124,11 @@ $findDogsBy = function (array $dogs, callable $fn): array{
     return $foundDogs;
 };
 
+
+
 // var_dump($findDogsBy($cleanDogs, curry($isBreedEqual, "Poodle")));
 // var_dump($findDogsBy($cleanDogs, curry($hasAllTricks, ["Kiss", "Talk", "Shake Hands", "Fetch", "Roll Over", "Play Dead", "Spin", "Sit", "Hug"])));
+// exit;
 
 $findDogByBreedForPerson = function (array $dogs, Person $person) use ($findDogsBy, $isBreedEqual) {
     $person->recommendedDogs = $findDogsBy($dogs, curry($isBreedEqual, $person->preferredBreed));
@@ -156,4 +166,4 @@ $recommendDogs = map(
     [$adam, $bob, $chris]
 );
 
-// var_dump($recommendDogs);
+ var_dump($recommendDogs);
